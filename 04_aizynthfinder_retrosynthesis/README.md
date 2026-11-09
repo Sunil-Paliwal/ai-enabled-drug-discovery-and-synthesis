@@ -2,7 +2,9 @@
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Sunil-Paliwal/ai-enabled-drug-discovery-and-synthesis/blob/main/04_aizynthfinder_retrosynthesis/aizynthfinder_retrosynthesis.ipynb)
 
-**Dr. Sunil Paliwal**  
+**Author:** Dr. Sunil Paliwal  
+Department of Chemistry and Chemical Biology  
+Stevens Institute of Technology  
 Department of Chemistry and Chemical Biology  
 Stevens Institute of Technology
 

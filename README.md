@@ -1,7 +1,9 @@
 # AI-Enabled Drug Discovery and Synthesis
 
-**Author:** Dr. Sunil Paliwal, Department of Chemistry and Chemical Biology,
+**Author:** Dr. Sunil Paliwal  
+Department of Chemistry and Chemical Biology  
 Stevens Institute of Technology
+
 **Status:** Developed for teaching and research in drug discovery and medicinal
 chemistry.
 

@@ -2,6 +2,10 @@
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Sunil-Paliwal/ai-enabled-drug-discovery-and-synthesis/blob/main/02_structure_validation_and_alerts/structure_validation_and_alerts.ipynb)
 
+**Author:** Dr. Sunil Paliwal  
+Department of Chemistry and Chemical Biology  
+Stevens Institute of Technology
+
 **Before you ask whether a molecule is active, ask whether it exists.**
 
 ## What this module teaches

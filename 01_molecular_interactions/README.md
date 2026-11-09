@@ -2,7 +2,9 @@
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Sunil-Paliwal/ai-enabled-drug-discovery-and-synthesis/blob/main/01_molecular_interactions/molecular_interactions.ipynb)
 
-**Author:** Dr. Sunil Paliwal, Department of Chemistry and Chemical Biology, Stevens Institute of Technology
+**Author:** Dr. Sunil Paliwal  
+Department of Chemistry and Chemical Biology  
+Stevens Institute of Technology
 
 **Status:** Developed for teaching drug discovery and medicinal chemistry.
 

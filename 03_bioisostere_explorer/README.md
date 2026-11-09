@@ -2,7 +2,8 @@
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Sunil-Paliwal/ai-enabled-drug-discovery-and-synthesis/blob/main/03_bioisostere_explorer/bioisostere_explorer.ipynb)
 
-**Author:** Dr. Sunil Paliwal, Department of Chemistry and Chemical Biology,
+**Author:** Dr. Sunil Paliwal  
+Department of Chemistry and Chemical Biology  
 Stevens Institute of Technology
 
 **Replace a functional group without losing the interaction it makes.**
