@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+title: AI-Enabled Drug Discovery and Synthesis - Colab notebooks
+message: If you use these notebooks in research or teaching, please cite them.
+type: software
+authors:
+  - given-names: Sunil
+    family-names: Paliwal
+    affiliation: Department of Chemistry and Chemical Biology, Stevens Institute of Technology
+    # orcid: "https://orcid.org/0000-0000-0000-0000"
+repository-code: "https://github.com/Sunil-Paliwal/ai-enabled-drug-discovery-and-synthesis"
+abstract: >-
+  Four Colab notebooks for computer-aided molecular design: molecular
+  interactions, structural validity and alerts, bioisosteric replacement, and
+  retrosynthesis. Usable for research as well as teaching -- the structural
+  validation module includes a batch mode that reports validity rate and the
+  breakdown of failure modes across a set of generated structures. Each module
+  also ships a worksheet that asks the user to predict before running and to
+  judge what the tool cannot tell them.
+keywords:
+  - cheminformatics
+  - drug design
+  - chemistry education
+  - generative model evaluation
+  - RDKit
+  - structural alerts
+  - bioisostere
+license: MIT
