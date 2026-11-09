@@ -62,8 +62,8 @@ Stage 1 is where students learn why theirs will not parse.
 
 | File | What it is |
 |---|---|
-| `structure_validation_and_alerts.ipynb` | The notebook. Open it in Colab with the badge above. |
-| `structure_validation_and_alerts_worksheet.docx` | Student worksheet, five parts. Predict, run, judge the tool, redesign. |
+| [`structure_validation_and_alerts.ipynb`](structure_validation_and_alerts.ipynb) | The notebook. Open it in Colab with the badge above. |
+| [`structure_validation_and_alerts_worksheet.docx`](structure_validation_and_alerts_worksheet.docx) | Student worksheet, five parts. Predict, run, judge the tool, redesign. |
 
 ## Teaching notes
 

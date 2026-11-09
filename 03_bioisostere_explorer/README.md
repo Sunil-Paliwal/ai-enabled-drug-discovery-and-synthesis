@@ -41,5 +41,5 @@ site can be wrong in another. A bioisostere is a hypothesis to test, not a fix.
 
 | File | What it is |
 |---|---|
-| `bioisostere_explorer.ipynb` | The notebook. Open it in Colab with the badge above. |
-| `bioisostere_explorer_worksheet.docx` | Student worksheet. |
+| [`bioisostere_explorer.ipynb`](bioisostere_explorer.ipynb) | The notebook. Open it in Colab with the badge above. |
+| [`bioisostere_explorer_worksheet.docx`](bioisostere_explorer_worksheet.docx) | Student worksheet. |
