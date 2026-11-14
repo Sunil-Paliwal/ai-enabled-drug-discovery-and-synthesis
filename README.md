@@ -12,7 +12,7 @@ built for a course but usable on their own. Each module answers one question a
 designer actually hits, in the order they hit it:
 
 **What makes a molecule bind? → Is it a valid molecule with no structural alerts?
-→ How do I fix its flaws without losing potency? → Can it actually be made?**
+→ How do I fix its flaws without losing the binding? → Can it actually be made?**
 
 Everything runs in Google Colab. There is nothing to install and no account beyond
 a Google one. Each notebook installs what it needs in its first cell.
