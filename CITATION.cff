@@ -1,27 +1,74 @@
 cff-version: 1.2.0
-title: AI-Enabled Drug Discovery and Synthesis - Colab notebooks
+title: "AI-Enabled Drug Discovery and Synthesis: Colab notebooks and worksheets for computer-aided molecular design"
 message: If you use these notebooks in research or teaching, please cite them.
 type: software
 authors:
   - given-names: Sunil
     family-names: Paliwal
     affiliation: Department of Chemistry and Chemical Biology, Stevens Institute of Technology
-    # orcid: "https://orcid.org/0000-0000-0000-0000"
+    orcid: "https://orcid.org/0009-0005-0046-4803"
 repository-code: "https://github.com/Sunil-Paliwal/ai-enabled-drug-discovery-and-synthesis"
 abstract: >-
-  Four Colab notebooks for computer-aided molecular design: molecular
-  interactions, structural validity and alerts, bioisosteric replacement, and
-  retrosynthesis. Usable for research as well as teaching -- the structural
-  validation module includes a batch mode that reports validity rate and the
-  breakdown of failure modes across a set of generated structures. Each module
-  also ships a worksheet that asks the user to predict before running and to
-  judge what the tool cannot tell them.
+  Four Colab notebooks and their worksheets for computer-aided molecular
+  design: molecular interactions, structural validity and alerts, bioisosteric
+  replacement, and retrosynthesis. Usable for research as well as teaching --
+  the structural validation module reports the specific atom at fault and
+  explains why rather than returning a pass or fail, and includes a batch mode
+  that reports validity rate and the breakdown of failure modes across a set of
+  generated structures. Each module ships a worksheet that asks the user to
+  predict before running and to judge what the tool cannot tell them. Built
+  with RDKit; everything runs in Google Colab with no local installation.
 keywords:
   - cheminformatics
+  - medicinal chemistry
+  - drug discovery
   - drug design
+  - computer-aided molecular design
   - chemistry education
   - generative model evaluation
   - RDKit
   - structural alerts
   - bioisostere
-license: MIT
+  - retrosynthesis
+  - molecular interactions
+  - Google Colab
+license:
+  - MIT
+  - CC-BY-4.0
+references:
+  - type: article
+    title: "AiZynthFinder: a fast, robust and flexible open-source software for retrosynthetic planning"
+    doi: 10.1186/s13321-020-00472-1
+    year: 2020
+    journal: Journal of Cheminformatics
+    authors:
+      - given-names: Samuel
+        family-names: Genheden
+      - given-names: Amol
+        family-names: Thakkar
+      - given-names: Veronika
+        family-names: Chadimova
+      - given-names: Jean-Louis
+        family-names: Reymond
+      - given-names: Ola
+        family-names: Engkvist
+      - given-names: Esben
+        family-names: Bjerrum
+  - type: article
+    title: "AiZynthFinder 4.0: developments based on learnings from 3 years of industrial application"
+    doi: 10.1186/s13321-024-00860-x
+    year: 2024
+    journal: Journal of Cheminformatics
+    authors:
+      - given-names: Lakshidaa
+        family-names: Saigiridharan
+      - given-names: Alan Kai
+        family-names: Hassen
+      - given-names: Helen
+        family-names: Lai
+      - given-names: Paula
+        family-names: Torren-Peraire
+      - given-names: Ola
+        family-names: Engkvist
+      - given-names: Samuel
+        family-names: Genheden
