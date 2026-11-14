@@ -1,94 +1,137 @@
-# AiZynthFinder-Based Retrosynthesis Workflow
+# 04 — Retrosynthesis with AiZynthFinder
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Sunil-Paliwal/ai-enabled-drug-discovery-and-synthesis/blob/main/04_aizynthfinder_retrosynthesis/aizynthfinder_retrosynthesis.ipynb)
 
 **Author:** Dr. Sunil Paliwal  
 Department of Chemistry and Chemical Biology  
-Stevens Institute of Technology  
-Department of Chemistry and Chemical Biology  
 Stevens Institute of Technology
 
----
+**Can this molecule actually be made, by what synthetic route, and through which reactions?**
 
-This repository contains a Google Colab notebook designed to facilitate retrosynthetic planning using the AiZynthFinder architecture.
-> **Note:** This repository and the associated notebook are currently in active development for educational purposes. The code is provided as-is, and feedback or suggestions for improvement from the community are welcomed.
+## What this module teaches
 
-## Overview
+A structure that passes every validity and liability check in module 02 can still
+be unmakeable. This module works backwards from a target to compounds that can be
+bought, using [AiZynthFinder](https://github.com/MolecularAI/aizynthfinder): a
+neural-network expansion policy proposes disconnections and Monte Carlo tree
+search assembles them into routes.
 
-This work is based on the open-source software **AiZynthFinder**, as described in the paper: Genheden et al., *J. Cheminform* (2020) 12:70. The original software utilizes a Monte Carlo tree search and a neural network policy to recursively break down molecules into purchasable precursors.
+The harder lesson is reading the output sceptically. The models are trained on
+reactions extracted from US patents, which are neither a complete nor an unbiased
+record of organic chemistry. A route can score 0.99 and rest on a step the model
+barely recognises. Deciding which of those is a bad prediction and which is sound
+chemistry that patents simply under-record is the judgement the notebook cannot
+make for you, and the thing worth arguing about in class.
 
-**Paper link:** <https://doi.org/10.1186/s13321-020-00472-1>
+## What is in it
 
----
+- **Routes drawn as schemes**, read right to left, with a **green** frame on
+  anything found in a catalogue and **orange** on anything that must be made.
+- **Reaction names on every step**, from
+  [Rxn-INSIGHT](https://doi.org/10.1186/s13321-024-00834-z). The public expansion
+  policy ships with its classification column empty, so stock AiZynthFinder can
+  name nothing; these names are generated from each reaction's atom-mapped centre.
+- **Confidence shown next to score.** Each step carries the policy probability
+  `p`, and anything below 0.05 is printed in amber — because the score measures
+  how short and how purchasable a route is, and says nothing about whether the
+  chemistry works.
+- **Which catalogue, not just "in stock".** Every starting material reports where
+  it was found, so a current supplier entry is distinguishable from a 2020 one.
+- **A PDF report** — scheme, step table and starting materials, one route a page.
+- **A ChemDraw bundle** — `route.cdxml` opens as an editable reaction scheme with
+  arrows, reaction names and plus signs; plus per-step `.cdxml` and `.rxn` files
+  and an SDF of every compound.
 
-### **Quick Start**
+## Running it
 
-To get started with the retrosynthesis workflow, follow these three steps (steps 1 through 3) in order.
+Run the cells in order. Cells 1 to 3 set the session up once; after that you can
+search as often as you like.
 
-#### 1. Preparation
+| | what it does | how long |
+|---|---|---|
+| **Cell 1** | installs the search engine and the reaction namer | ~2 min |
+| **Cell 2** | downloads the models and the ZINC catalogue (1.3 GB) | ~3–4 min |
+| **Cell 3** | writes the support code | instant |
+| **Cell 4** | one search | ~2–3 min |
 
-- First, ensure you are logged into your Google account.
+About eight minutes from a cold session to the first set of routes. Nothing is
+kept between sessions: if the Colab runtime disconnects, cells 1 to 3 must run
+again.
 
-- Open the notebook in Google Colab by clicking the link below. This opens the latest version directly from this GitHub repository:
+Cell 4 has four settings at the top. `MAX_ROUTES` is how many routes to show;
+`MAX_STEPS` is the longest route the search will consider, and AiZynthFinder's
+default of 6 is often too short for an elaborate target. Raising it alone will
+not help, since a deeper tree is a much bigger tree — raise `TIME_LIMIT` and
+`ITERATIONS` with it.
 
-    **[AiZynthFinder Notebook in Google Colab](https://colab.research.google.com/github/Sunil-Paliwal/ai-enabled-drug-discovery-and-synthesis/blob/main/04_aizynthfinder_retrosynthesis/aizynthfinder_retrosynthesis.ipynb)**
+## Catalogues
 
-- Then, click **"Copy to Drive"** to save your own editable copy of the notebook.
+ZINC ships with AiZynthFinder and is used by default. It tells you a compound was
+purchasable *somewhere*, but the bundled snapshot dates from 2020 and carries no
+supplier or delivery information, so treat a green frame as "this was buyable five
+years ago" rather than "you can order this today". The notebook prints the
+catalogue name against every starting material for exactly that reason.
 
-#### 2. Setup & Run Cells
+To add your own, convert a supplier catalogue with `build_stock_file.ipynb` and
+list it in `EXTRA_STOCKS` at the top of Cell 2. Download any such catalogue under
+your own account and on the supplier's own terms; none is distributed here.
 
-- **Cell #1**: Run this first by clicking the ▶ (play) button. It creates a separate Python 3.11 environment and installs `aizynthfinder` (pinned to version 4.4.1) and its dependencies into it.
-- **Cell #2**: Run this second by clicking the ▶ (play) button to download the public USPTO models and ZINC stock collection. This takes a few minutes (about 3 in our tests), so wait until it prints `Data download and configuration complete.` before running Cell #3.
-- **Cell #3**: Run this last by clicking the ▶ (play) button to launch the interactive search interface.
+Worth knowing when reading the results: catalogues of *novel* building blocks
+often omit commodity reagents — piperidine and benzyl bromide may be absent from
+one although any lab can buy them in a day, while ZINC has them. Catalogues
+complement each other, which is why all of them are reported.
 
-#### 3. Perform Analysis
+## What this notebook is
 
-- Once the interface has appeared, you can enter a new SMILES string and click **"Run Search"** for each molecule. Results are shown below the button: search statistics followed by images of the top-ranked routes (up to 10).
+AiZynthFinder is used **unmodified**, installed from PyPI at a pinned version.
+Every route, score and disconnection comes from it; none of its code is altered or
+redistributed here. What this module adds sits downstream of that output:
+packaging it to run in Colab, reaction names, per-catalogue availability, the PDF
+report and the ChemDraw export.
 
-  The search box comes pre-filled with Aspirin's SMILES (`CC(=O)Oc1ccccc1C(=O)O`) as an example, so you can click **"Run Search"** right away to see a working result before trying your own molecule.
+The one piece of third-party code that *is* modified is the route-drawing layout,
+adapted from `rxnutils` (reaction-utils, AstraZeneca, Apache 2.0); the changes are
+recorded in the header of the support module, as that licence requires.
 
-> **Note:** The Python 3.11 environment and the downloaded models are stored in the temporary Colab session storage (`/content`), so they are lost when the session disconnects or is closed. After a disconnect, re-run all three cells (#1, #2 and #3) in order.
+Please cite AiZynthFinder as well as this notebook — it does the retrosynthesis.
 
-### Why does the notebook use a separate Python environment?
+### Why a separate Python environment?
 
-Colab's default Python version is now newer than the versions supported by AiZynthFinder (Python 3.10 to 3.12). On the default Colab Python, a plain `pip install aizynthfinder` fails with *"No matching distribution found for aizynthfinder"*. The notebook therefore installs AiZynthFinder into its own Python 3.11 environment (created with [`uv`](https://github.com/astral-sh/uv)) and runs each search there. The input box and the results are displayed in the notebook itself. This also makes the notebook resilient to future changes of Colab's default Python. The AiZynthFinder version is pinned to 4.4.1 (the latest release at the time of writing) so that results stay reproducible; to use a newer release, edit the version number in Cell #1.
+Colab's default Python is newer than anything AiZynthFinder supports, so a plain
+`pip install aizynthfinder` fails with *"No matching distribution found"*. The
+notebook installs it into its own Python 3.11 environment (created with
+[`uv`](https://github.com/astral-sh/uv)) and runs each search there, which also
+makes the notebook resilient to future changes of Colab's default Python.
+Everything downstream — naming, drawing, PDF, export — runs in Colab's own Python,
+which already has the PyTorch the atom-mapper needs.
 
-### Troubleshooting: installation or import failures
+## Troubleshooting
 
-Cell 1 installs AiZynthFinder by resolving its dependencies against PyPI,
-so it normally picks up current bug and security fixes. Occasionally an
-unpinned transitive dependency releases a breaking version and Cell 1
-starts failing — for example, pyarrow 26 dropped NumPy 1.x support while
-AiZynthFinder still pins `numpy<2`, which produced:
+**Cell 2 reports that a host was unavailable.** Routine. The models are split
+across two public hosts and one of them, figshare, refuses a share of requests;
+the cell fetches the missing files from a mirror and carries on.
+
+**Installation or import failures.** Cell 1 resolves dependencies against PyPI so
+you keep getting bug and security fixes, but occasionally an unpinned transitive
+dependency releases a breaking version — pyarrow 26 dropped NumPy 1.x support
+while AiZynthFinder still pins `numpy<2`, producing:
 
     ImportError: pyarrow requires NumPy 2.0 or newer, found 1.26.4
 
-If that happens, install from the pinned set in `requirements-lock.txt`
-instead. Replace the `uv pip install` line in Cell 1 with:
+If that happens, install from the pinned set instead. Fetch it into the session:
+
+    !wget -q https://raw.githubusercontent.com/Sunil-Paliwal/ai-enabled-drug-discovery-and-synthesis/main/04_aizynthfinder_retrosynthesis/requirements-lock.txt
+
+then replace the `uv pip install` line in Cell 1 with:
 
     !uv pip install -q --python /content/azf_env/bin/python -r requirements-lock.txt
 
-You will need the file available in the Colab session first:
+Those versions were verified on Python 3.11 (linux x86_64) to install, import and
+render route images successfully.
 
-    !wget -q https://raw.githubusercontent.com/Sunil-Paliwal/ai-enabled-drug-discovery-and-synthesis/main/requirements-lock.txt
-
-These versions were verified on Python 3.11 (linux x86_64) to install,
-import and render route images successfully.
-
-
----
-
-### Attribution & Licensing
-
-- **Article License:** The original article is licensed under a Creative Commons Attribution 4.0 International License.
-- **Data Waiver:** The data from the original article is provided under the Creative Commons Public Domain Dedication waiver.
-- **Software License:** The original AiZynthFinder software is distributed under the MIT License.
-
-*Note: Modifications have been made to the original workflow to adapt it for the Google Colab environment.*
-
-### References
-
-Genheden, S., Thakkar, A., Chadimová, V. et al. AiZynthFinder: a fast, robust and flexible open-source software for retrosynthetic planning. J Cheminform 12, 70 (2020). <https://doi.org/10.1186/s13321-020-00472-1>
+**ChemDraw pushes structures off the page.** Set the page to landscape:
+File → Page Setup → Landscape, then View → Fit to Window. The schemes are laid out
+to fit a landscape page.
 
 ## Prerequisites
 
@@ -96,7 +139,26 @@ Assumes a finished design, so realistically modules 01 to 03.
 
 ## Setup warning
 
-Unlike the other three modules, AiZynthFinder needs trained policy models and stock
-files downloaded separately. That is a substantial download rather than a
-`pip install`, so this notebook will not start as quickly as the others. Budget
-setup time in the session plan and test the download before teaching from it.
+Unlike the other three modules, AiZynthFinder needs trained policy models and
+stock files downloaded separately — a substantial download rather than a
+`pip install`. Budget setup time in the session plan and test the download before
+teaching from it.
+
+## References
+
+- Genheden, S.; Thakkar, A.; Chadimová, V. *et al.* AiZynthFinder: a fast, robust
+  and flexible open-source software for retrosynthetic planning. *J. Cheminform.*
+  **2020**, *12*, 70. <https://doi.org/10.1186/s13321-020-00472-1>
+- Saigiridharan, L.; Hassen, A. K.; Lai, H. *et al.* AiZynthFinder 4.0:
+  developments based on learnings from 3 years of industrial application.
+  *J. Cheminform.* **2024**, *16*, 57.
+  <https://doi.org/10.1186/s13321-024-00860-x>
+- Dobbelaere, M. R.; Lengyel, I.; Stevens, C. V.; Van Geem, K. M. Rxn-INSIGHT:
+  fast chemical reaction analysis using bond-electron matrices. *J. Cheminform.*
+  **2024**, *16*, 37. <https://doi.org/10.1186/s13321-024-00834-z>
+
+### Licensing
+
+The original AiZynthFinder software is distributed under the MIT License. The
+original article is licensed under Creative Commons Attribution 4.0 International,
+and its data under the Creative Commons Public Domain Dedication waiver.
