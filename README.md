@@ -11,8 +11,8 @@ Four Colab notebooks and their worksheets for computer-aided molecular design,
 built for a course but usable on their own. Each module answers one question a
 designer actually hits, in the order they hit it:
 
-**What makes it bind → is this even a real molecule, and is it safe → how do I fix
-what is wrong without losing the binding → can anyone make it?**
+**What makes a molecule bind? → Is it a valid molecule with no structural alerts?
+→ How do I fix its flaws without losing potency? → Can it actually be made?**
 
 Everything runs in Google Colab. There is nothing to install and no account beyond
 a Google one. Each notebook installs what it needs in its first cell.
