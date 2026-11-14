@@ -1,5 +1,7 @@
 # AI-Enabled Drug Discovery and Synthesis
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24232866.svg)](https://doi.org/10.5281/zenodo.24232866)
+
 **Author:** Dr. Sunil Paliwal  
 Department of Chemistry and Chemical Biology  
 Stevens Institute of Technology

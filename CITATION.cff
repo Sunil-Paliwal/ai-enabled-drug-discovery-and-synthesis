@@ -8,6 +8,16 @@ authors:
     affiliation: Department of Chemistry and Chemical Biology, Stevens Institute of Technology
     orcid: "https://orcid.org/0009-0005-0046-4803"
 repository-code: "https://github.com/Sunil-Paliwal/ai-enabled-drug-discovery-and-synthesis"
+version: 1.0.1
+date-released: 2026-11-14
+doi: 10.5281/zenodo.24232866
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.24232866
+    description: Concept DOI, always resolving to the latest version
+  - type: doi
+    value: 10.5281/zenodo.24232867
+    description: Version DOI for v1.0.1
 abstract: >-
   Four Colab notebooks and their worksheets for computer-aided molecular
   design: molecular interactions, structural validity and alerts, bioisosteric
